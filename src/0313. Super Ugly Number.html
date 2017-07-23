@@ -1,0 +1,84 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Super Ugly Number</title>
+
+<script type="text/javascript"> 
+//https://leetcode.com/problems/super-ugly-number/
+
+function test(){
+    print(nthSuperUglyNumber, [12, [2, 7, 13, 19]], 32);
+    print(nthSuperUglyNumber, [6, [2, 7, 13, 19]]);
+    print(nthSuperUglyNumber, [6, [2, 5, 7]], 8);
+}
+
+/**
+ * @param {number} n
+ * @param {number[]} primes
+ * @return {number}
+ */
+var nthSuperUglyNumber = function(n, primes) {
+    var i, dp = [1], prime = [], dpIndex = 1, tmp, min, minIndex;
+    for(i = 0; i < primes.length; i++) prime[i] = 0;
+    while(dpIndex <= n){
+        min = Infinity;
+        for(i = 0; i < primes.length; i++){
+            tmp = dp[prime[i]] * primes[i];
+            if(tmp < min){
+                min = tmp;
+                minIndex = i;
+            }
+        }
+        prime[minIndex]++;
+        if(min !== dp[dpIndex - 1]){
+            dp[dpIndex] = min;
+            dpIndex++;
+        }
+    }
+    return dp[n - 1];
+};
+
+//-----------------------------------------------------------------------------
+
+function print(method, args, expect){
+    var output = document.getElementsByClassName("output")[0];
+    output.innerHTML += '>> ' + method.name + '(';
+    if(args && args.length > 0){
+        var argsStr = JSON.stringify(args);
+        output.innerHTML += argsStr.substring(1, argsStr.length - 1);
+    }
+    output.innerHTML += ')';
+    if(expect){
+        output.innerHTML += ', expect: ' + expect;
+    }
+    output.innerHTML += '\n';
+    output.innerHTML += '<< ' + method.apply(this, args) + '\n';
+}
+
+</script>
+
+<style type="text/css">
+html{
+	width: 100%; height:100%;
+}
+body{
+	width: 80%; height:100%; margin: 0px auto; background: rgba(238, 246, 251, 0.51);
+}
+.output{
+	width: 100%; height: 90%; font-size: 15px;
+}
+button{
+	width: 40%; height: 5%; display: block; margin: 5px 30%;
+}
+</style>
+</head>
+
+<body >
+    <button type="button" onclick="test()">Run!</button>
+    <textarea class="output"></textarea>
+</body>
+
+</html>
+
+

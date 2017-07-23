@@ -1,0 +1,9 @@
+{
+  "name": "leetcode-javascript",
+  "version": "1.0.0",
+  "description": "leetcode javascript solutions",
+  "scripts": {
+  },
+  "author": "liok3187@gmail.com",
+  "license": "MIT"
+}
