@@ -8,35 +8,65 @@
 //https://leetcode.com/problems/super-ugly-number/
 
 function test(){
-    print(nthSuperUglyNumber, [12, [2, 7, 13, 19]], 32);
-    print(nthSuperUglyNumber, [6, [2, 7, 13, 19]]);
-    print(nthSuperUglyNumber, [6, [2, 5, 7]], 8);
+    var a1 = new UndirectedGraphNode(1);
+    var a2 = new UndirectedGraphNode(2);
+    var a3 = new UndirectedGraphNode(3);
+    var a4 = new UndirectedGraphNode(4);
+    a1.neighbors = [a2, a3];
+    a2.neighbors = [a4];
+    a3.neighbors = [a4];
+    print(cloneGraph, [a1]);
+
+    var a0 = new UndirectedGraphNode(0); 
+    a0.neighbors = [a0, a0]; 
+    print(cloneGraph, [a0]);
+}
+
+function UndirectedGraphNode(label) {
+    this.label = label;
+    this.neighbors = [];   // Array of UndirectedGraphNode
 }
 
 /**
- * @param {number} n
- * @param {number[]} primes
- * @return {number}
+ * Definition for undirected graph.
+ * function UndirectedGraphNode(label) {
+ *     this.label = label;
+ *     this.neighbors = [];   // Array of UndirectedGraphNode
+ * }
  */
-var nthSuperUglyNumber = function(n, primes) {
-    var i, dp = [1], prime = [], dpIndex = 1, tmp, min, minIndex;
-    for(i = 0; i < primes.length; i++) prime[i] = 0;
-    while(dpIndex <= n){
-        min = Infinity;
-        for(i = 0; i < primes.length; i++){
-            tmp = dp[prime[i]] * primes[i];
-            if(tmp < min){
-                min = tmp;
-                minIndex = i;
+/**
+ * @param {UndirectedGraphNode} graph
+ * @return {UndirectedGraphNode}
+ */
+var cloneGraph = function(graph) {
+    var visited = {};
+    if(graph === null){
+        return null;
+    }else{
+        return dfs(graph);
+    }
+
+    function dfs(node){
+        var newNode = null;
+        if(visited[node.label]){
+            newNode = visited[node.label];
+        }else{
+            newNode = new UndirectedGraphNode(node.label);
+            visited[node.label] = newNode;
+        }
+        for(var i = 0; i < node.neighbors.length; i++){
+            if(node.neighbors[i].label !== node.label){
+                if(!visited[node.neighbors[i].label]){
+                    newNode.neighbors.push(dfs(node.neighbors[i]));
+                }else{
+                    newNode.neighbors.push(visited[node.neighbors[i].label]);
+                }
+            }else{
+                newNode.neighbors.push(visited[node.label]);
             }
         }
-        prime[minIndex]++;
-        if(min !== dp[dpIndex - 1]){
-            dp[dpIndex] = min;
-            dpIndex++;
-        }
-    }
-    return dp[n - 1];
+        return newNode; 
+    }   
 };
 
 //-----------------------------------------------------------------------------
@@ -67,6 +97,7 @@ function print(method, args, expect){
         console.log('circle references, result is:');
         console.log(res);
     }
+    
 }
 
 </script>
