@@ -2,7 +2,7 @@
 
 ## Quick Start
 
-Download the html in src folder, open it in Chrome.
+Download the html in `solutions` folder, open it in Chrome.
 
 ![image](https://raw.githubusercontent.com/wiki/TommyFu/leetcode-javascript/images/leetcode-tool.png)
 

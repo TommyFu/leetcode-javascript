@@ -2,10 +2,10 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
-<title>Super Ugly Number</title>
+<title>Clone Graph</title>
 
 <script type="text/javascript"> 
-//https://leetcode.com/problems/super-ugly-number/
+//https://leetcode.com/problems/clone-graph/
 
 function test(){
     var a1 = new UndirectedGraphNode(1);
@@ -27,13 +27,6 @@ function UndirectedGraphNode(label) {
     this.neighbors = [];   // Array of UndirectedGraphNode
 }
 
-/**
- * Definition for undirected graph.
- * function UndirectedGraphNode(label) {
- *     this.label = label;
- *     this.neighbors = [];   // Array of UndirectedGraphNode
- * }
- */
 /**
  * @param {UndirectedGraphNode} graph
  * @return {UndirectedGraphNode}
@@ -97,7 +90,6 @@ function print(method, args, expect){
         console.log('circle references, result is:');
         console.log(res);
     }
-    
 }
 
 </script>
