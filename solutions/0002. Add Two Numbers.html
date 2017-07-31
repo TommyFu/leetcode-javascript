@@ -1,0 +1,122 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Add Two Numbers</title>
+
+<script type="text/javascript"> 
+//https://leetcode.com/problems/add-two-numbers/
+
+function test(){
+    var l2 = new ListNode(2);
+    var l4 = new ListNode(4);
+    var l3 = new ListNode(3);
+    var l5 = new ListNode(5);
+    var l6 = new ListNode(6);
+    var l4_ = new ListNode(4);
+
+    l2.next = l4;
+    l4.next = l3;
+    l5.next = l6;
+    l6.next = l4_;
+
+    print(addTwoNumbers, [l2, l5]);
+}
+
+function ListNode(val) {
+    this.val = val;
+    this.next = null;
+}
+/**
+ * @param {ListNode} l1
+ * @param {ListNode} l2
+ * @return {ListNode}
+ */
+var addTwoNumbers = function(l1, l2) {
+    var carry = 0;
+    var result = new ListNode(-1);
+    var resHead = result;
+    while(l1 !== null || l2 !== null){
+        var sum = carry;
+        if(l1 !== null){
+            sum += l1.val;
+            l1 = l1.next;
+        }
+        if(l2 !== null){
+            sum += l2.val;
+            l2 = l2.next;
+        }
+
+        var node = null;
+        if(sum >= 10){
+            node = new ListNode(sum - 10);
+            carry = 1;
+        }else{
+            node = new ListNode(sum);
+            carry = 0;
+        }
+        result.next = node;
+        result = result.next;
+    }
+    if(carry === 1){
+        result.next = new ListNode(1);
+    }
+    return resHead.next;
+};
+
+//-----------------------------------------------------------------------------
+
+function print(method, args, expect){
+    var output = document.getElementsByClassName("output")[0];
+    output.innerHTML += '>> ' + method.name + '(';
+    if(args && args.length > 0){
+        try{
+            var argsStr = JSON.stringify(args);
+            output.innerHTML += argsStr.substring(1, argsStr.length - 1);
+        }catch(ex){
+            output.innerHTML += '{Printing args in console}';
+            console.log('circle references, args is:');
+            console.log(args);
+        }
+    }
+    output.innerHTML += ')';
+    if(expect){
+        output.innerHTML += ', expect: ' + expect;
+    }
+    output.innerHTML += '\n';
+    var res = method.apply(this, args);
+    try{
+        output.innerHTML += '<< ' + JSON.stringify(res) + '\n';
+    }catch(ex){
+        output.innerHTML += '<< {Printing result in console} \n';
+        console.log('circle references, result is:');
+        console.log(res);
+    }
+}
+
+</script>
+
+<style type="text/css">
+html{
+	width: 100%; height:100%;
+}
+body{
+	width: 80%; height:100%; margin: 0px auto; background: rgba(238, 246, 251, 0.51);
+}
+.output{
+	width: 100%; height: 90%; font-size: 15px;
+}
+button{
+	width: 40%; height: 5%; display: block; margin: 5px 30%;
+}
+</style>
+</head>
+
+<body >
+    <button type="button" onclick="test()">Run!</button>
+    <textarea class="output"></textarea>
+</body>
+
+</html>
+
+
