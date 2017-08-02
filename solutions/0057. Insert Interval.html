@@ -1,0 +1,99 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Insert Interval</title>
+
+<script type="text/javascript"> 
+//https://leetcode.com/problems/insert-interval/
+
+function test(){
+    print(JSON.stringify(insert([{start:2,end:5}, {start:6,end:7}, {start:8,end:9}], {start:0,end:1})) === JSON.stringify([[0,1],[2,5],[6,7],[8,9]]));
+    print(JSON.stringify(insert([{start:1,end:2}, {start:3,end:5}, {start:6,end:7}, {start:8,end:10}, {start:12,end:16}], {start:4,end:9})) == JSON.stringify([[1,2],[3,10],[12,16]]));
+    print(JSON.stringify(insert([{start:3,end:5}], {start:1,end:2})) == JSON.stringify([[1,2],[3,5]]));
+    print(JSON.stringify(insert([{start:0,end:4},{start:7,end:12}], {start:0,end:5})) == JSON.stringify([[0,5],[7,12]]));
+    print(JSON.stringify(insert([{start:1,end:5}], {start:2,end:3})) == JSON.stringify([[1,5]]));
+   
+    print(JSON.stringify(insert([], {start:5,end:7})) == JSON.stringify([[5,7]]));
+    print(JSON.stringify(insert([{start:1,end:2}], {start:3,end:4})) == JSON.stringify([[1,2],[3,4]])); 
+    print(JSON.stringify(insert([{start:1,end:3}], {start:2,end:4})) == JSON.stringify([[1,4]]));
+    print(JSON.stringify(insert([{start:3,end:4}], {start:5,end:6})) == JSON.stringify([[3,4],[5,6]]));
+    print(JSON.stringify(insert([{start:5,end:6}], {start:3,end:4})) == JSON.stringify([[3,4],[5,6]]));
+    
+    print(JSON.stringify(insert([{start:3,end:4}, {start:8,end:9}], {start:6,end:7})) == JSON.stringify([[3,4],[6,7],[8,9]]));
+    print(JSON.stringify(insert([{start:3,end:8}], {start:1,end:5})) == JSON.stringify([[1,8]]));
+    print(JSON.stringify(insert([{start:3,end:8}], {start:5,end:10})) == JSON.stringify([[3,10]]));
+    print(JSON.stringify(insert([{start:3,end:5}, {start:6,end:7},{start:9,end:11}], {start:4,end:10})) == JSON.stringify([[3,11]]));
+    print(JSON.stringify(insert([{start:3,end:5}, {start:9,end:11}], {start:4,end:10})) == JSON.stringify([[3,11]]));
+    
+    print(JSON.stringify(insert([{start:3,end:5}, {start:7,end:8}], {start:2,end:9})) == JSON.stringify([[2,9]]));
+    print(JSON.stringify(insert([{start:1,end:3}, {start:5,end:6}], {start:2,end:7})) == JSON.stringify([[1,7]]));
+}
+
+/**
+ * Definition for an interval.
+ */
+function Interval(start, end) {
+    this.start = start;
+    this.end = end;
+}
+/**
+ * @param {Interval[]} intervals
+ * @param {Interval} newInterval
+ * @return {Interval[]}  !!!!!!! wrong format
+ */
+var insert = function(intervals, newInterval) {
+    var res = [];
+    for(var i = 0; i < intervals.length; i++){
+        var curr = intervals[i];
+        if(curr.end < newInterval.start){
+            res.push([curr.start, curr.end]);
+        }else if(newInterval.end < curr.start ){
+            res.push([newInterval.start, newInterval.end]);
+            newInterval = curr;
+        }else if(curr.start <= newInterval.start || newInterval.end <= curr.end){ //merge
+            newInterval.start = Math.min(curr.start, newInterval.start);
+            newInterval.end = Math.max(curr.end, newInterval.end);
+        }else{
+            // newInterval eat curr
+        }
+    }
+    res.push([newInterval.start, newInterval.end]);
+    return res;
+};
+
+//-----------------------------------------------------------------------------
+
+let index = 1;
+function print(message){
+    var output = document.getElementsByClassName("output")[0];
+    output.innerHTML += index + '. '+ message + '\n';
+    index++;
+}
+
+</script>
+
+<style type="text/css">
+html{
+	width: 100%; height:100%;
+}
+body{
+	width: 80%; height:100%; margin: 0px auto; background: rgba(238, 246, 251, 0.51);
+}
+.output{
+	width: 100%; height: 90%; font-size: 15px;
+}
+button{
+	width: 40%; height: 5%; display: block; margin: 5px 30%;
+}
+</style>
+</head>
+
+<body >
+    <button type="button" onclick="test()">Run!</button>
+    <textarea class="output"></textarea>
+</body>
+
+</html>
+
+
