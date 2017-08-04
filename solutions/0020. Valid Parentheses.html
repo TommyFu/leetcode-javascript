@@ -2,66 +2,54 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
-<title>Add Two Numbers</title>
+<title>Valid Parentheses</title>
 
 <script type="text/javascript"> 
-//https://leetcode.com/problems/add-two-numbers/
+//https://leetcode.com/problems/valid-parentheses/
 
 function test(){
-    var l2 = new ListNode(2);
-    var l4 = new ListNode(4);
-    var l3 = new ListNode(3);
-    var l5 = new ListNode(5);
-    var l6 = new ListNode(6);
-    var l4_ = new ListNode(4);
-
-    l2.next = l4;
-    l4.next = l3;
-    l5.next = l6;
-    l6.next = l4_;
-
-    print(addTwoNumbers, [l2, l5]);
+    print(isValid, ["()[]{}"], true);
+    print(isValid, ["[{()}]"], true);
+    print(isValid, ["([)]"], false);
+    print(isValid, ["([)"], false);
 }
 
-function ListNode(val) {
-    this.val = val;
-    this.next = null;
-}
 /**
- * @param {ListNode} l1
- * @param {ListNode} l2
- * @return {ListNode}
+ * @param {string} s
+ * @return {boolean}
  */
-var addTwoNumbers = function(l1, l2) {
-    var carry = 0;
-    var result = new ListNode(-1);
-    var resHead = result;
-    while(l1 !== null || l2 !== null){
-        var sum = carry;
-        if(l1 !== null){
-            sum += l1.val;
-            l1 = l1.next;
+var isValid = function(s) {
+    var stack = [];
+    function brackets(left, right){
+        if(left === '(' && right === ')'){
+            return true;
+        }else if(left === '[' && right === ']'){
+            return true;
+        }else if(left === '{' && right === '}'){
+            return true;
         }
-        if(l2 !== null){
-            sum += l2.val;
-            l2 = l2.next;
-        }
-
-        var node = null;
-        if(sum >= 10){
-            node = new ListNode(sum - 10);
-            carry = 1;
+        return false;
+    }
+    var top = null;
+    for(var i in s){
+        if(/[\({\[]/.test(s[i])){
+            stack.push(s[i]);
         }else{
-            node = new ListNode(sum);
-            carry = 0;
+            if(stack.length > 0){
+                top = stack.pop();
+                if(!brackets(top, s[i])){
+                    return false;
+                }
+            }else{
+                return false;
+            }
         }
-        result.next = node;
-        result = result.next;
     }
-    if(carry === 1){
-        result.next = new ListNode(1);
-    }
-    return resHead.next;
+    
+    if(stack.length !== 0){
+        return false;
+    }  
+    return true;
 };
 
 //-----------------------------------------------------------------------------

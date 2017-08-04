@@ -55,7 +55,7 @@ function print(method, args, expect){
         }
     }
     output.innerHTML += ')';
-    if(expect){
+    if(expect !== undefined){
         output.innerHTML += ', expect: ' + expect;
     }
     output.innerHTML += '\n';

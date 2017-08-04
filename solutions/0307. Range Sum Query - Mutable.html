@@ -112,7 +112,7 @@ function print(context, method, args, expect){
         output.innerHTML += argsStr.substring(1, argsStr.length - 1);
     }
     output.innerHTML += ')';
-    if(expect){
+    if(expect !== undefined){
         output.innerHTML += ', expect: ' + expect;
     }
     output.innerHTML += '\n';
