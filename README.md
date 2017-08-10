@@ -6,6 +6,8 @@ Download the html in `solutions` folder, open it in Chrome.
 
 ![image](https://raw.githubusercontent.com/wiki/TommyFu/leetcode-javascript/images/leetcode-tool.png)
 
+[0001. Two Sum]()
+
 [0002. Add Two Numbers](https://github.com/TommyFu/leetcode-javascript/wiki/0002)
 
 [0019. Remove Nth Node From End of List](https://github.com/TommyFu/leetcode-javascript/wiki/0019)
