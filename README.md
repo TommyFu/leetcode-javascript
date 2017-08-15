@@ -10,6 +10,8 @@ Download the html in `solutions` folder, open it in Chrome.
 
 [0015. 3Sum](https://github.com/TommyFu/leetcode-javascript/wiki/0015)
 
+[0016. 3Sum Closest](https://github.com/TommyFu/leetcode-javascript/wiki/0016)
+
 [0020. Valid Parentheses](https://github.com/TommyFu/leetcode-javascript/wiki/)
 
 [0057. Insert Interval](https://github.com/TommyFu/leetcode-javascript/wiki/0057)
