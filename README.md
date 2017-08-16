@@ -14,6 +14,8 @@ Download the html in `solutions` folder, open it in Chrome.
 
 [0020. Valid Parentheses](https://github.com/TommyFu/leetcode-javascript/wiki/)
 
+[0039. Combination Sum](https://github.com/TommyFu/leetcode-javascript/wiki/0039)
+
 [0057. Insert Interval](https://github.com/TommyFu/leetcode-javascript/wiki/0057)
 
 [0133. Clone Graph](https://github.com/TommyFu/leetcode-javascript/wiki/0133)
