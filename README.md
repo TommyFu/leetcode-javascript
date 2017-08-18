@@ -26,6 +26,8 @@ Download the html in `solutions` folder, open it in Chrome.
 
 [0191. Number of 1 Bits](https://github.com/TommyFu/leetcode-javascript/wiki/)
 
+[0216. Combination Sum III](https://github.com/TommyFu/leetcode-javascript/wiki/0216)
+
 [0307. Range Sum Query - Mutable](https://github.com/TommyFu/leetcode-javascript/wiki/0307)
 
 [0313. Super Ugly Number](https://github.com/TommyFu/leetcode-javascript/wiki/0313)
