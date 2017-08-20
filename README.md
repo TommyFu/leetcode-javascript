@@ -33,3 +33,5 @@ Download the html in `solutions` folder, open it in Chrome.
 [0313. Super Ugly Number](https://github.com/TommyFu/leetcode-javascript/wiki/0313)
 
 [0338. Counting Bits](https://github.com/TommyFu/leetcode-javascript/wiki/0338)
+
+[0343. Power of Four](https://github.com/TommyFu/leetcode-javascript/wiki/0342)
