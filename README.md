@@ -28,6 +28,8 @@ Download the html in `solutions` folder, open it in Chrome.
 
 [0216. Combination Sum III](https://github.com/TommyFu/leetcode-javascript/wiki/0216)
 
+[0228. Summary Ranges](https://github.com/TommyFu/leetcode-javascript/wiki/0228)
+
 [0307. Range Sum Query - Mutable](https://github.com/TommyFu/leetcode-javascript/wiki/0307)
 
 [0313. Super Ugly Number](https://github.com/TommyFu/leetcode-javascript/wiki/0313)
