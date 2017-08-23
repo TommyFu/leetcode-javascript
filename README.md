@@ -8,6 +8,8 @@ Download the html in `solutions` folder, open it in Chrome.
 
 [0002. Add Two Numbers](https://github.com/TommyFu/leetcode-javascript/wiki/0002)
 
+[0004. Median of Two Sorted Arrays](https://github.com/TommyFu/leetcode-javascript/wiki/0004)
+
 [0015. 3Sum](https://github.com/TommyFu/leetcode-javascript/wiki/0015)
 
 [0016. 3Sum Closest](https://github.com/TommyFu/leetcode-javascript/wiki/0016)
