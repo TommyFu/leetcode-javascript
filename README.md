@@ -22,6 +22,8 @@ Download the html in `solutions` folder, open it in Chrome.
 
 [0057. Insert Interval](https://github.com/TommyFu/leetcode-javascript/wiki/0057)
 
+[0069. Sqrt(x)](https://github.com/TommyFu/leetcode-javascript/wiki/0069)
+
 [0133. Clone Graph](https://github.com/TommyFu/leetcode-javascript/wiki/0133)
 
 [0171. Excel Sheet Column Number](https://github.com/TommyFu/leetcode-javascript/wiki/)
