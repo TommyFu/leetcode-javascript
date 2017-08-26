@@ -1,27 +1,27 @@
 function print(method, args, expect){
   var output = document.getElementsByClassName("output")[0];
-  output.innerHTML += '>> ' + method.name + '(';
+  output.value += '>> ' + method.name + '(';
   if(args && args.length > 0){
-      try{
-          var argsStr = JSON.stringify(args);
-          output.innerHTML += argsStr.substring(1, argsStr.length - 1);
-      }catch(ex){
-          output.innerHTML += '{Printing args in console}';
-          console.log('circle references, args is:');
-          console.log(args);
-      }
+    try{
+      var argsStr = JSON.stringify(args);
+      output.value += argsStr.substring(1, argsStr.length - 1);
+    }catch(ex){
+      output.value += '{Printing args in console}';
+      console.log('circle references, args is:');
+      console.log(args);
+    }
   }
-  output.innerHTML += ')';
+  output.value += ')';
   if(expect !== undefined){
-      output.innerHTML += ', expect: ' + expect;
+    output.value += ', expect: ' + expect;
   }
-  output.innerHTML += '\n';
+  output.value += '\n';
   var res = method.apply(this, args);
   try{
-      output.innerHTML += '<< ' + JSON.stringify(res) + '\n';
+    output.value += '<< ' + JSON.stringify(res) + '\n';
   }catch(ex){
-      output.innerHTML += '<< {Printing result in console} \n';
-      console.log('circle references, result is:');
-      console.log(res);
+    output.value += '<< {Printing result in console} \n';
+    console.log('circle references, result is:');
+    console.log(res);
   }
 } 
