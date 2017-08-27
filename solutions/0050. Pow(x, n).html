@@ -1,0 +1,62 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Pow(x, n)</title>
+
+<link href="../helper/style.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../helper/logger.js"></script>
+<script type="text/javascript"> 
+//https://leetcode.com/problems/excel-sheet-column-number/
+
+function test(){
+    print(myPow, [-2,-2] );
+    print(myPow, [-2,2] );
+    print(myPow, [-2,3] );
+    print(myPow, [2,-2] );
+    print(myPow, [2,-3] );
+    print(myPow, [2,0] );
+    print(myPow, [2,1] );
+    print(myPow, [2,2] );
+    print(myPow, [2,5] );
+    print(myPow, [2,10] );
+}
+
+/**
+ * @param {number} x
+ * @param {number} n
+ * @return {number}
+ */
+var myPow = function(x, n) {
+    if(n >= 0){
+        return pow(Math.abs(n));
+    }else{
+        return 1 / pow(Math.abs(n));
+    }
+    
+    function pow(n){
+        var temp = 0;
+        if(n === 0){
+            return 1;
+        }else if(n === 1){
+            return x;
+        }else if(n % 2 === 1){
+            temp = pow((n - 1) / 2);
+            return temp * temp * x;
+        }else if(n % 2 === 0){
+            temp = pow(n / 2);
+            return temp * temp;
+        }
+    }
+};
+
+</script>
+</head>
+
+<body >
+    <textarea class="output"></textarea>
+    <button type="button" onclick="test()">Run!</button>
+</body>
+
+</html>
+
+

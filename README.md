@@ -20,6 +20,8 @@ Download the html in `solutions` folder, open it in Chrome.
 
 [0040. Combination Sum II](https://github.com/TommyFu/leetcode-javascript/wiki/0040)
 
+[0050. Pow(x, n)](https://github.com/TommyFu/leetcode-javascript/wiki/0050)
+
 [0057. Insert Interval](https://github.com/TommyFu/leetcode-javascript/wiki/0057)
 
 [0069. Sqrt(x)](https://github.com/TommyFu/leetcode-javascript/wiki/0069)
