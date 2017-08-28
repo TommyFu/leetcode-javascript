@@ -1,0 +1,120 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>LRU Cache</title>
+
+<link href="../helper/style.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../helper/logger.js"></script>
+<script type="text/javascript"> 
+//https://leetcode.com/problems/lru-cache/
+
+function test(){
+    var lru = new LRUCache(1);
+    lru.put(2,1);
+    print(lru.get(2)); //1
+    lru.put(3,2);
+    print(lru.get(2));  //-1
+    print(lru.get(3));  //2
+
+    lru = new LRUCache(3);
+    lru.put(1,1);
+    lru.put(2,2);
+    lru.put(3,3);
+    lru.put(3,33);
+    lru.put(4,4);
+    print(lru.get(1)); //-1
+    print(lru.get(2)); //2
+    print(lru.get(3)); //33
+    print(lru.get(4)); //4
+
+    lru = new LRUCache(2);
+    lru.put(2,1);
+    lru.put(2,2);
+    print(lru.get(2)); //2
+    lru.put(1,1);
+    lru.put(4,1);
+    print(lru.get(2)); //-1
+
+
+    lru = new LRUCache(2);
+    lru.put(2,1);
+    lru.put(1,1);
+    print(lru.get(2)); //1
+    lru.put(4,1);
+    print(lru.get(1));  //-1
+    print(lru.get(2));  //1
+}
+
+/**
+ * @constructor
+ */
+var LRUCache = function(capacity) {
+    this.capacity = capacity;
+    this.keyMap = new Set();
+    this.queue = []; 
+};
+
+/**
+ * @param {number} key
+ * @returns {number}
+ */
+LRUCache.prototype.get = function(key) {
+    if(this.keyMap.has(key)){
+        for(var i = 0; i < this.queue.length; i++){
+            if(this.queue[i].key === key){
+                var value = this.queue[i].value;
+                this.queue = this.queue.slice(0,i).concat(this.queue.slice(i + 1));
+                this.queue.unshift({key : key, value : value}); 
+                return value;
+            }
+        }
+    }
+    return -1;
+};
+
+/**
+ * @param {number} key
+ * @param {number} value
+ * @returns {void}
+ */
+LRUCache.prototype.put = function(key, value) {
+    if(this.keyMap.has(key)){
+        var index = -1;
+        for(var i = 0; i < this.queue.length; i++){
+            if(this.queue[i].key === key){
+                index = i;
+                break;
+            }
+        }
+        this.queue = this.queue.slice(0,index).concat(this.queue.slice(index + 1));
+    }else{
+        this.keyMap.add(key);
+    }
+    this.queue.unshift({key : key, value : value}); 
+
+    if(this.queue.length > this.capacity){
+        var pop = this.queue.pop();
+        this.keyMap.delete(pop.key);
+    }
+};
+
+//-----------------------------------------------------------------------------
+
+let index = 1;
+function print(message){
+    var output = document.getElementsByClassName("output")[0];
+    output.innerHTML += index + '. '+ message + '\n';
+    index++;
+}
+
+</script>
+</head>
+
+<body >
+    <textarea class="output"></textarea>
+    <button type="button" onclick="test()">Run!</button>
+</body>
+
+</html>
+
+
