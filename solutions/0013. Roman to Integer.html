@@ -1,0 +1,51 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Roman to Integer</title>
+
+<link href="../helper/style.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../helper/logger.js"></script>
+<script type="text/javascript"> 
+//https://leetcode.com/problems/roman-to-integer/
+
+function test(){
+    print(romanToInt, ["XXX"]);
+    print(romanToInt, ["DCXXI"]);
+}
+
+/**
+ * @param {string} s
+ * @return {number}
+ */
+var romanToInt = function(s) {
+    var map = {
+        I: 1, V:5, X: 10, L: 50,
+        C: 100, D: 500, M: 1000  
+    };
+    var res, tmp = 0;
+    for(var i = s.length - 1; i >= 0; i--){
+    	if(!res){
+            res = map[s[i]];
+            continue;
+        }
+        if(map[s[i]] >= map[s[i + 1]]){
+            res += map[s[i]];
+        }else{
+            res -= map[s[i]];
+        }
+    }
+    return res;
+};
+
+
+</script>
+</head>
+
+<body >
+    <textarea class="output"></textarea>
+    <button type="button" onclick="test()">Run!</button>
+</body>
+
+</html>
+
+

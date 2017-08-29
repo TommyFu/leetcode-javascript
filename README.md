@@ -10,6 +10,8 @@ Download the html in `solutions` folder, open it in Chrome.
 
 [0004. Median of Two Sorted Arrays](https://github.com/TommyFu/leetcode-javascript/wiki/0004)
 
+[0013. Roman to Integer](https://github.com/TommyFu/leetcode-javascript/wiki/0013)
+
 [0015. 3Sum](https://github.com/TommyFu/leetcode-javascript/wiki/0015)
 
 [0016. 3Sum Closest](https://github.com/TommyFu/leetcode-javascript/wiki/0016)
