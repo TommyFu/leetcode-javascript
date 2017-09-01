@@ -1,0 +1,67 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Integer to Roman</title>
+
+<link href="../helper/style.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../helper/logger.js"></script>
+<script type="text/javascript"> 
+//https://leetcode.com/problems/integer-to-roman/
+
+function test(){
+    print(intToRoman, [1]);
+    print(intToRoman, [2]);
+    print(intToRoman, [3]);
+    print(intToRoman, [4]);
+    print(intToRoman, [5]);
+    print(intToRoman, [6]);
+    print(intToRoman, [7]);
+    print(intToRoman, [8]);
+    print(intToRoman, [9]);
+    print(intToRoman, [10]);
+    print(intToRoman, [13], 'XIII');
+    print(intToRoman, [19], 'XIX');
+    print(intToRoman, [99], 'XCIX');
+    print(intToRoman, [999], 'CMXCIX');
+    print(intToRoman, [1984], 'MCMLXXXIV');
+}
+
+/**
+ * @param {number} num
+ * @return {string}
+ */
+var intToRoman = function(num) {
+    var mapping = [
+        {number: 1, roman: 'I'}, {number: 4, roman: 'IV'}, {number: 5, roman: 'V'}, 
+        {number: 9, roman: 'IX'}, {number: 10, roman: 'X'}, {number: 40, roman: 'XL'},
+        {number: 50, roman: 'L'}, {number: 90, roman: 'XC'}, {number: 100, roman: 'C'}, 
+        {number: 400, roman: 'CD'}, {number: 500, roman: 'D'}, {number: 900, roman: 'CM'}, 
+        {number: 1000, roman: 'M'} 
+    ];
+    var tmp, index = 12, res = ""; 
+    while(index >= 0){
+        var m = mapping[index];
+        if(m.number > num){
+            index--;
+            continue;
+        }
+        while(num >= m.number){
+            num -= m.number;
+            res += m.roman;
+        }
+        index--;
+    }
+    return res;
+};
+
+</script>
+</head>
+
+<body >
+    <textarea class="output"></textarea>
+    <button type="button" onclick="test()">Run!</button>
+</body>
+
+</html>
+
+
