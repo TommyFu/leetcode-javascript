@@ -1,0 +1,65 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Heaters</title>
+
+<link href="../helper/style.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../helper/logger.js"></script>
+<script type="text/javascript"> 
+//https://leetcode.com/problems/heaters/
+
+function test(){
+    print(findRadius, [[1,2,3],[2]], 1);
+    print(findRadius, [[1,2,3,4],[1,4]], 1);
+    print(findRadius, [[1,5], [10]], 9);
+}
+
+/**
+ * @param {number[]} houses
+ * @param {number[]} heaters
+ * @return {number}
+ */
+var findRadius = function(houses, heaters) {
+    let _houses = houses.sort((a,b) => {return a - b});
+    let _heaters = heaters.sort((a,b) => {return a - b});
+    let max = 0;
+
+    for(let i = 0; i < _houses.length; i++){
+        let curr = _houses[i];
+        let start = 0, end = _heaters.length - 1, mid, min = Infinity;
+        while(start <= end){
+            mid = ~~((start + end) / 2);
+            let midLeft = _heaters[mid - 1] || 0;
+            let midRight = _heaters[mid + 1] || Infinity;
+            if(_heaters[mid] === curr){
+                min = 0;
+                break;
+            }else if(midLeft < curr && curr <= _heaters[mid]){
+                min = _heaters[mid - 1] ? Math.min(curr - midLeft, _heaters[mid] - curr)
+                                        : _heaters[mid] - curr;
+                break;
+            }else if(_heaters[mid] <= curr && curr < midRight){
+                min = Math.min(curr - _heaters[mid], midRight - curr);
+                break;
+            }else if(_heaters[mid] < curr){
+                start = mid + 1;    
+            }else{
+                end = mid - 1;
+            }
+        }
+        max = Math.max(max, min);
+    }
+    return max;
+};
+
+</script>
+</head>
+
+<body >
+    <textarea class="output"></textarea>
+    <button type="button" onclick="test()">Run!</button>
+</body>
+
+</html>
+
+
