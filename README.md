@@ -51,3 +51,5 @@ Download the html in `solutions` folder, open it in Chrome.
 [0338. Counting Bits](https://github.com/TommyFu/leetcode-javascript/wiki/0338)
 
 [0343. Power of Four](https://github.com/TommyFu/leetcode-javascript/wiki/0342)
+
+[0475. Heaters](https://github.com/TommyFu/leetcode-javascript/wiki/0475)

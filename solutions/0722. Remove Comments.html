@@ -1,0 +1,77 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Remove Comments</title>
+
+<link href="../helper/style.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../helper/logger.js"></script>
+<script type="text/javascript"> 
+//https://leetcode.com/problems/remove-comments
+
+function test(){
+    print(removeComments, [["/*Test program */", "int main()", "{ ", "  // variable declaration ", "int a, b, c;", "/* This is a test", "   multiline  ", "   comment for ", "   testing */", "a = b + c;", "}"]]);
+    print(removeComments, [["a/*comment", "line", "more_comment*/b"]]);
+}
+
+/**
+ * @param {string[]} source
+ * @return {string[]}
+ */
+ var removeComments = function(source) {
+    let res = [];
+    let line = "";
+    let isInBlock = false, isInQuote = false;
+    for(let i = 0; i < source.length; i++){
+        let curr = source[i];
+        for(let j = 0; j < curr.length; j++){
+            let ch = curr[j];
+            if(ch === '"'){
+                if(!isInBlock){
+                    isInQuote = true;
+                    line += ch;
+                }
+            }else if(curr[j + 1] !== undefined){
+                if(ch === '/' && curr[j + 1] === '/' && !isInBlock && !isInQuote){
+                    break;
+                }else if(ch === '/' && curr[j + 1] === '*' && !isInQuote){
+                    if(!isInBlock){
+                        isInBlock = true;
+                        j++;
+                    }
+                }else if(ch === '*' && curr[j + 1] === '/' && !isInQuote){
+                    if(!isInBlock){
+                        line += ch;
+                    }else{
+                        isInBlock = false;
+                        j++;
+                    }
+                }else{
+                    if(!isInBlock){
+                        line += ch;
+                    }
+                }
+            }else{
+                if(!isInBlock){
+                    line += ch;
+                }
+            }
+        }
+        if(!isInBlock && line.length > 0){
+            res.push(line);
+            line = '';
+        }
+    }
+    return res;
+};
+
+</script>
+</head>
+
+<body >
+    <textarea class="output"></textarea>
+    <button type="button" onclick="test()">Run!</button>
+</body>
+
+</html>
+
+
